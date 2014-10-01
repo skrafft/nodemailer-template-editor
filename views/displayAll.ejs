@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Nodemailer template editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+<h1>Existing templates</h1>
+<div id="templates">
+    <% if (templates.length) { %>
+    <% for (var i=0;i<templates.length;i++) { %>
+       <a href="/templates/<%= templates[i] %>"><%= templates[i] %></a><br>
+    <% } %>
+    <% } else { %>
+       No templates right now! Use the "New" button to create a new one
+    <% } %>
+</div>
+<div id="new_template" style="margin-top:20px;">
+    <a href="/templates/--new--" class="btn btn-primary">New</a>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Nodemailer template editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <link href="/css/codemirror.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <script src="/lib/codemirror.min.js"></script>
+</head>
+<body>
+
+<h1>Template preview</h1>
+<form id="template" action="/templates/<%=name || "--new--"%>" method="post">
+   <table width="100%">
+   <% if (!name) { %>
+   <tr><td colspan="2">
+     Template name:&nbsp;<input type="text" name="name" id="name" value="New template"/>
+   </td></tr>
+   <% } else {%>
+   <tr><td colspan="2">
+     <center><iframe style="width:800px;height:300px;" name="preview" src="/tmp/<%=name%>"></iframe></center>
+   </td></tr>
+   <% } %>
+  <tr><td width="50%"><h3>Text</h3></td><td width="50%"><h3>Html</h3></td></tr>
+  <tr>
+     <td><div><textarea id="text" style="height:300px;" name="text"><%= text %></textarea></div></td>
+     <td><div><textarea id="html" style="height:300px;" name="html"><%= html %></textarea></div></td>
+   </tr>
+   <tr><td width="50%"><h3>CSS</h3></td><td width="50%"><h3>JSON test data</h3></td></tr>
+   <tr>
+     <td><div><textarea id="css" style="height:300px;" name="css"><%= css %></textarea></div></td>
+     <td><div><textarea id="json" style="height:300px;" name="json"><%= json %></textarea></div></td>
+   </tr>
+   <tr><td colspan="2">
+     <div id="btns">
+      <button type"submit" name="save" value="save" class="btn btn-primary">Save and preview</button>
+      <button type"submit" name="delete" value="delete" class="btn btn-default">Delete</button>
+      <a href="/templates" class="btn btn-default">Back</a>
+     </div>
+   </td></tr>
+   </table>
+</form>
+
+<script>
+  CodeMirror.fromTextArea(document.getElementById("html"),{lineNumbers:true, lineWrapping:true});
+  CodeMirror.fromTextArea(document.getElementById("text"),{lineNumbers:true, lineWrapping:true});
+  CodeMirror.fromTextArea(document.getElementById("css"),{lineNumbers:true, lineWrapping:true});
+  CodeMirror.fromTextArea(document.getElementById("json"),{lineNumbers:true, lineWrapping:true});
+</script>
+
+</body>
+</html>
+
